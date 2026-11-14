@@ -1,417 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Echo Paisa</title>
-  <meta name="description" content="Money talk made simple: FD, savings, zero balance accounts, pharma business ideas and AI news." />
-  <style>
-    :root {
-      --bg: #c19af5;
-      --bg2: #9468ee;
-      --y: #ffe45e;
-      --b: #2f5bff;
-      --ink: #141414;
-      --paper: #fffdf8;
-      --line: #0a0a0a;
-      --shadow: 0 8px 0 rgba(0, 0, 0, 0.95);
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font: 500 17px/1.5 Poppins, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      overflow-x: hidden;
-    }
-    a { color: inherit; }
-    img { max-width: 100%; display: block; }
-    button, input { font: inherit; }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      background: rgba(193, 154, 245, 0.96);
-      border-bottom: 4px solid var(--line);
-      padding: 14px 18px;
-      backdrop-filter: blur(8px);
-    }
-    .brand {
-      font-family: "Arial Black", Impact, sans-serif;
-      font-size: clamp(1.2rem, 5vw, 2.1rem);
-      letter-spacing: 0.04em;
-      text-transform: lowercase;
-    }
-    .cta {
-      text-decoration: none;
-      color: #fff;
-      background: #000;
-      border: 3px solid #000;
-      border-radius: 999px;
-      font-weight: 700;
-      padding: 8px 18px;
-      box-shadow: 4px 4px 0 var(--bg2);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .cta:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--bg2); }
-
-    .shell {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 0 18px 64px;
-    }
-
-    .hero {
-      padding: 28px 0 12px;
-    }
-    .hero-card {
-      border: 4px solid var(--line);
-      background: rgba(255, 255, 255, 0.88);
-      border-radius: 30px;
-      box-shadow: 10px 10px 0 var(--line);
-      padding: 22px;
-    }
-    .eyebrow {
-      display: inline-block;
-      background: var(--y);
-      border: 3px solid var(--line);
-      border-radius: 999px;
-      padding: 5px 12px;
-      font-weight: 700;
-      font-size: 12px;
-      margin-bottom: 16px;
-    }
-    h1, h2, h3 {
-      margin: 0 0 10px;
-      font-family: "Arial Black", Impact, sans-serif;
-      letter-spacing: 0.02em;
-      line-height: 1.1;
-    }
-    h1 {
-      font-size: clamp(2.4rem, 10vw, 5.4rem);
-      text-transform: lowercase;
-    }
-    .hero-note {
-      font-size: clamp(1rem, 3vw, 1.4rem);
-      max-width: 52ch;
-      margin: 0;
-    }
-
-    .tabs {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      padding: 18px 0 10px;
-    }
-    .tab {
-      border: 3px solid var(--line);
-      background: #fff;
-      border-radius: 999px;
-      padding: 10px 18px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 4px 4px 0 var(--bg2);
-    }
-    .tab.active {
-      background: #000;
-      color: #fff;
-      box-shadow: 4px 4px 0 var(--y);
-    }
-
-    .panel {
-      display: none;
-      animation: fadeUp 0.28s ease;
-    }
-    .panel.active {
-      display: block;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 20px;
-      margin-top: 18px;
-    }
-    .card {
-      background: #fff;
-      border: 4px solid var(--line);
-      border-radius: 24px;
-      box-shadow: 8px 8px 0 var(--line);
-      padding: 18px;
-      cursor: pointer;
-      transition: transform 0.18s ease;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-    .card:active { transform: translate(4px, 4px); box-shadow: 3px 3px 0 var(--line); }
-    .icon {
-      width: 76px;
-      height: 76px;
-      display: grid;
-      place-items: center;
-      border: 4px solid var(--line);
-      border-radius: 22px;
-      background: var(--y);
-      font-size: 2rem;
-      margin-bottom: 14px;
-      box-shadow: 5px 5px 0 var(--bg2);
-    }
-    .card h3 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      margin-bottom: 8px;
-    }
-    .card p {
-      margin: 0;
-      color: rgba(0, 0, 0, 0.8);
-    }
-    .chip {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 5px 12px;
-      border-radius: 999px;
-      background: var(--b);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .contact-box {
-      background: var(--y);
-      border: 4px solid var(--line);
-      border-radius: 26px;
-      box-shadow: 9px 9px 0 var(--line);
-      padding: 20px;
-      margin-top: 16px;
-    }
-    .mail {
-      display: inline-block;
-      margin-top: 8px;
-      font-weight: 700;
-      word-break: break-all;
-      color: #000;
-    }
-
-    .footer {
-      padding: 28px 0 16px;
-      color: rgba(0, 0, 0, 0.8);
-      text-align: center;
-    }
-
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.85);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
-      z-index: 100;
-    }
-    .lightbox.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .lightbox img {
-      max-width: min(92vw, 620px);
-      border: 5px solid #000;
-      border-radius: 22px;
-      background: #fff;
-      box-shadow: 10px 10px 0 rgba(0,0,0,0.4);
-    }
-    .close-lightbox {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      background: #fff;
-      border: 3px solid #000;
-      border-radius: 999px;
-      width: 44px;
-      height: 44px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .back-top {
-      position: fixed;
-      right: 18px;
-      bottom: 20px;
-      z-index: 80;
-      border: 3px solid #000;
-      background: #fff;
-      border-radius: 999px;
-      font-weight: 800;
-      padding: 10px 14px;
-      box-shadow: 4px 4px 0 var(--bg2);
-      cursor: pointer;
-    }
-
-    @media (max-width: 480px) {
-      .hero-card { padding: 18px; }
-      .tab { flex: 1 1 40%; text-align: center; }
-      .topbar { padding: 12px 14px; }
-      .back-top { right: 12px; bottom: 14px; }
-    }
-  </style>
+<meta charset="utf-8">
+<title>Echo Paisa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#C19AF5">
+<meta name="description" content="Money talk made simple: FD, savings, zero balance accounts, pharma business ideas and AI news.">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#C19AF5;--bg2:#9468EE;--y:#FFE45E;--b:#2F5BFF;--ink:#000;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:86px;overscroll-behavior:none}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 17px/1.5 Poppins,system-ui,sans-serif;overscroll-behavior:none;padding-bottom:110px;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+[hidden]{display:none!important}
+h1,h2,h3,.display{font-family:'Archivo Black','Arial Black',Impact,sans-serif;font-weight:400;margin:0;line-height:1.05}
+h2{font-size:clamp(38px,11vw,60px);color:#fff;-webkit-text-stroke:9px #000;paint-order:stroke fill;text-shadow:-1px 1px #000,-2px 2px #000,-3px 3px #000,-4px 4px #000,-5px 5px #000,-6px 6px #000,-7px 7px #000;margin-bottom:14px}
+.hw{height:190vh;position:relative}.hero{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+.logo{font-family:'Archivo Black','Arial Black',Impact,sans-serif;font-size:min(27vw,150px);line-height:.86;display:flex;flex-direction:column;align-items:flex-start;padding:0 8px 24px 0}.row{display:flex}.row.r2{margin-left:12vw}.letter{display:inline-block;color:#fff;-webkit-text-stroke:13px #000;paint-order:stroke fill;text-shadow:-1px 1px #000,-2px 2px #000,-3px 3px #000,-4px 4px #000,-5px 5px #000}
+.tag{position:absolute;left:0;right:0;top:50%;text-align:center;padding:0 28px;font:400 clamp(28px,8vw,46px)/1.15 'Archivo Black','Arial Black',sans-serif;opacity:0;transform:translateY(16px);transition:opacity .35s,transform .35s}.tag.on{opacity:1;transform:none}.hint{position:absolute;bottom:calc(120px + env(safe-area-inset-bottom,0px));font-weight:600;font-size:15px;animation:bob 1.6s ease-in-out infinite}@keyframes bob{50%{transform:translateY(8px)}}
+.top{position:fixed;top:0;left:0;right:0;z-index:40;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 10px;display:flex;align-items:center;justify-content:space-between;background:var(--bg);border-bottom:4px solid #000;transform:translateY(-120%);transition:transform .3s}.top.on{transform:none}.top b{font:400 22px 'Archivo Black','Arial Black',sans-serif}
+a.btn{font:700 15px Poppins,sans-serif;color:#fff;background:#000;border:3px solid #000;border-radius:99px;padding:8px 18px;text-decoration:none;box-shadow:4px 4px 0 var(--bg2);display:inline-block}a.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--bg2)}
+main{max-width:760px;margin:0 auto;padding:0 18px}section{padding:40px 0 10px}.sub{margin:0 0 26px;max-width:40ch;font-weight:600}.grid{display:grid;gap:24px}.card{background:#fff;border:4px solid #000;border-radius:28px;padding:22px;box-shadow:9px 9px 0 #000;transition:transform .15s,box-shadow .15s}.card h3{font-size:28px;margin:16px 0 6px}.card p{margin:0}.ico{width:78px;height:78px;border:4px solid #000;border-radius:22px;background:var(--t,#fff);box-shadow:5px 5px 0 #000;display:grid;place-items:center;transform:rotate(-6deg);font:400 35px 'Archivo Black','Arial Black',sans-serif}.chip{display:inline-block;margin-top:14px;font:700 13px Poppins,sans-serif;background:#000;color:#fff;border-radius:99px;padding:4px 14px}.rv{opacity:0;transform:translateY(30px);transition:opacity .5s,transform .55s}.rv.in{opacity:1;transform:none}
+.bandw{overflow:hidden;padding:14px 0 20px}.band{background:#000;color:var(--y);transform:rotate(-1.5deg) scale(1.04);border-block:3px solid #000;padding:7px 0;white-space:nowrap;overflow:hidden}.track{display:inline-flex;animation:roll 24s linear infinite}.track span{padding:0 12px;font:400 clamp(14px,3.8vw,22px)/1 'Archivo Black','Arial Black',sans-serif}.track span::after{content:' •';color:var(--bg)}@keyframes roll{to{transform:translateX(-50%)}}
+.rail{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 18px 34px;margin:0 -18px;scrollbar-width:none}.rail::-webkit-scrollbar{display:none}.story{flex:0 0 min(62vw,250px);aspect-ratio:9/16;scroll-snap-align:center;border:4px solid #000;border-radius:26px;box-shadow:9px 9px 0 #000;background:#fff;overflow:hidden;padding:18px;display:flex;flex-direction:column;justify-content:space-between}.story img{width:100%;height:100%;object-fit:cover}.story h3{font-size:25px;margin-top:14px}
+.calc label{display:flex;justify-content:space-between;font-weight:700;margin-top:14px}.calc input{width:100%;accent-color:#000;height:30px}.res{margin-top:18px;background:var(--bg);border:4px solid #000;border-radius:20px;padding:14px 18px}.res strong{display:block;font:400 34px 'Archivo Black','Arial Black',sans-serif}small{display:block;margin-top:10px;font-size:13px}
+.flow{display:flex;flex-direction:column;align-items:center}.team-card{background:#fff;border:4px solid #000;border-radius:22px;box-shadow:6px 6px 0 #000;padding:18px;text-align:center;width:min(70vw,280px)}.team-card h3{margin:12px 0 0}.team-kids{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%;margin-top:24px}.team-kids div{background:#fff;border:3px solid #000;border-radius:16px;padding:12px 6px;text-align:center;font:400 clamp(11px,3vw,15px) 'Archivo Black','Arial Black',sans-serif;overflow-wrap:anywhere;box-shadow:4px 4px 0 #000}.team-kids div:first-child{background:var(--y)}
+.faq{background:var(--y);border:4px solid #000;border-radius:26px;box-shadow:9px 9px 0 #000;padding:6px 20px}.fq{border-bottom:3px solid #000}.fq:last-child{border:0}.fq button{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0;font:700 16px/1.3 Poppins,sans-serif;cursor:pointer}.fq .answer{display:none}.fq.open .answer{display:block}.fq .answer p{margin:0 0 16px}footer{padding:30px 0 10px;font-size:13px}
+.nav{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:50;width:min(94vw,480px);display:flex;background:#fff;border:4px solid #000;border-radius:99px;box-shadow:6px 6px 0 #000;padding:6px}.nav button{flex:1;min-width:0;border:0;background:none;color:#000;font:700 11px Poppins,sans-serif;padding:7px 1px 5px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}.nav button.on{background:#000;color:#fff;border-radius:99px}.nav svg{width:22px;height:22px}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.86);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .25s}.lb.on{opacity:1;pointer-events:auto}.lb img{max-height:88svh;max-width:92vw;border:4px solid #000;border-radius:20px;background:#fff}.lb button{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);right:16px;cursor:pointer}
+.tabs{display:flex;gap:12px;overflow-x:auto;padding:6px 18px 18px;margin:0 -18px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tabs button{flex:0 0 auto;font:700 15px Poppins,sans-serif;border:3px solid #000;border-radius:99px;background:#fff;color:#000;padding:9px 20px;box-shadow:4px 4px 0 #000;cursor:pointer}.tabs button[aria-selected=true]{background:#000;color:#fff;box-shadow:4px 4px 0 var(--bg2)}.panel[hidden]{display:none}.bank .pic{width:100%;height:auto;border:4px solid #000;border-radius:20px;box-shadow:5px 5px 0 #000;background:#fff}.ticks{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:9px}.ticks li{font-weight:600;font-size:15px;line-height:1.35}.disclosure{margin-top:18px}.credit-link{display:block;margin-top:16px}
+:focus-visible{outline:4px solid #000;outline-offset:3px}body.pv{padding-bottom:30px}@media(min-width:700px){.grid.two{grid-template-columns:1fr 1fr}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.hint{display:none}.rv{opacity:1;transform:none}}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">echo paisa</div>
-    <a class="cta" href="https://instagram.com/echo.paisa" target="_blank" rel="noopener">Follow</a>
-  </header>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 48 48"><path d="M5 23 24 6l19 17v19H5z" fill="var(--a,#ffe45e)" stroke="#000" stroke-width="3.5"/><path d="M19 42V28h10v14" fill="var(--b,#fff)" stroke="#000" stroke-width="3.5"/></symbol>
+<symbol id="i-book" viewBox="0 0 48 48"><rect x="6" y="7" width="36" height="35" rx="5" fill="var(--a,#ffe45e)" stroke="#000" stroke-width="3.5"/><path d="M14 16h20M14 24h20M14 32h14" stroke="#000" stroke-width="3"/></symbol>
+<symbol id="i-calc" viewBox="0 0 48 48"><rect x="8" y="4" width="32" height="40" rx="7" fill="var(--a,#ffe45e)" stroke="#000" stroke-width="3.5"/><path d="M15 13h18v8H15zM16 29h.1M24 29h.1M32 29h.1M16 37h.1M24 37h.1M32 37h.1" stroke="#000" stroke-width="4" stroke-linecap="round"/></symbol>
+<symbol id="i-heart" viewBox="0 0 48 48"><path d="M24 42C10 32 5 25 5 17a10 10 0 0 1 19-4 10 10 0 0 1 19 4c0 8-5 15-19 25z" fill="var(--a,#ffe45e)" stroke="#000" stroke-width="3.5"/></symbol>
+<symbol id="i-coin" viewBox="0 0 48 48"><circle cx="24" cy="24" r="19" fill="var(--a,#ffe45e)" stroke="#000" stroke-width="3.5"/><text x="24" y="31" text-anchor="middle" font-size="20" font-family="Arial Black,sans-serif" fill="#000">₹</text></symbol>
+</defs></svg>
 
-  <div class="shell">
-    <section class="hero" id="home">
-      <div class="hero-card">
-        <div class="eyebrow">Money talk made simple</div>
-        <h1>Echo Paisa</h1>
-        <p class="hero-note">FDs, savings, zero-balance accounts, pharma business ideas and AI news explained in plain language for students and small business owners.</p>
-      </div>
-    </section>
+<div id="home-view">
+<header class="top" id="topbar"><b>echo paisa</b><a class="btn" href="https://instagram.com/echo.paisa" target="_blank" rel="noopener noreferrer">Follow</a></header>
+<div class="hw" id="top"><div class="hero"><div class="logo" id="logo" aria-label="Echo Paisa"></div><div class="tag" id="tag">Money talk made simple.</div><div class="hint">Scroll to explore</div></div></div>
+<div class="bandw" aria-hidden="true"><div class="band"><div class="track"><span>FD</span><span>Savings</span><span>Zero balance</span><span>Pharma business</span><span>AI news</span><span>Simple money talk</span><span>FD</span><span>Savings</span><span>Zero balance</span><span>Pharma business</span><span>AI news</span><span>Simple money talk</span></div></div></div>
+<main>
+<section id="pillars"><h2 class="rv">What we cover</h2><p class="sub">Money, business and technology explained simply for students and small business owners.</p>
+<div class="grid">
+<div class="card rv"><div class="ico" style="--t:var(--y)">₹</div><h3>Money basics</h3><p>FDs, savings and zero-balance accounts, explained in simple language.</p><span class="chip">Learn</span></div>
+<div class="card rv"><div class="ico" style="--t:var(--b)">Rx</div><h3>Pharma business</h3><p>Business ideas, startup costs and first steps for pharmacy students.</p><span class="chip">Coming soon</span></div>
+<div class="card rv"><div class="ico" style="--t:#fff">AI</div><h3>AI news</h3><p>How AI is changing pharmacy and finance, in a few lines.</p><span class="chip">Coming soon</span></div>
+<a class="card rv" href="#products" data-view="products"><div class="ico" style="--t:var(--bg)">▣</div><h3>Products</h3><p>Bank accounts and credit cards to explore.</p><span class="chip">Explore</span></a>
+</div>
+<div style="margin-top:56px"><h2 class="rv">Knowledge stories</h2><p class="sub">Swipe through quick explainers and live sessions.</p></div>
+<div class="rail">
+<button class="story rv" id="story-open" type="button" aria-label="Open money basics story"><div class="ico" style="--t:var(--y)">₹</div><div><h3>Money talk, made simple</h3><span class="chip">Explore</span></div></button>
+<div class="story rv" style="background:var(--y)"><div class="ico" style="--t:#fff">₹</div><div><h3>What is an FD?</h3><span class="chip">Coming soon</span></div></div>
+<div class="story rv" style="background:var(--b);color:#fff"><div class="ico" style="--t:#fff">▣</div><div><h3>Zero balance accounts</h3><span class="chip" style="background:#fff;color:#000">Coming soon</span></div></div>
+<div class="story rv"><div class="ico" style="--t:var(--bg)">AI</div><div><h3>AI in pharmacy</h3><span class="chip">Coming soon</span></div></div>
+</div>
+</section>
+<section id="tools"><h2 class="rv">FD calculator</h2><p class="sub">Estimate what a fixed deposit could grow to.</p>
+<div class="card calc rv"><label for="A">Amount <span id="vA"></span></label><input id="A" type="range" min="10000" max="1000000" step="5000" value="50000"><label for="R">Interest rate <span id="vR"></span></label><input id="R" type="range" min="3" max="9" step="0.1" value="7"><label for="Y">Years <span id="vY"></span></label><input id="Y" type="range" min="1" max="10" step="1" value="3"><div class="res">Estimated maturity amount<strong id="out"></strong><span id="gain"></span></div><small>Assumes quarterly compounding. Actual rates and terms depend on your bank.</small></div>
+</section>
+<section id="team"><h2 class="rv">Echo Media Team</h2><p class="sub">Echo Paisa, Echo Clicks and Echo TGPCOP Media are part of one team.</p><div class="flow rv"><div class="team-card"><div class="ico" style="margin:auto;--t:var(--bg)">E</div><h3>Echo Media Team</h3></div><div class="team-kids"><div>Echo Paisa<br>You’re here</div><div>Echo Clicks</div><div>Echo TGPCOP Media</div></div></div></section>
+<section id="follow"><h2 class="rv">Questions?</h2><p class="sub">Quick answers before you scroll on.</p><div class="faq rv">
+<div class="fq"><button type="button" aria-expanded="false"><span>What is Echo Paisa?</span><b aria-hidden="true">＋</b></button><div class="answer"><p>A page that explains money, pharma business ideas and AI news in simple language.</p></div></div>
+<div class="fq"><button type="button" aria-expanded="false"><span>Is this financial advice?</span><b aria-hidden="true">＋</b></button><div class="answer"><p>No. Everything here is educational only. Check rates and charges with your bank before deciding.</p></div></div>
+<div class="fq"><button type="button" aria-expanded="false"><span>Where do you post updates?</span><b aria-hidden="true">＋</b></button><div class="answer"><p>On Instagram at @echo.paisa. Follow to see new posts and stories.</p></div></div>
+<div class="fq"><button type="button" aria-expanded="false"><span>Need help or want a topic covered?</span><b aria-hidden="true">＋</b></button><div class="answer"><p>Send us an email or a message on Instagram.</p></div></div>
+</div>
+<div class="card rv" style="margin-top:34px"><div class="ico" style="--t:var(--bg)">♡</div><h3>@echo.paisa</h3><p>Money tips, pharma business ideas and AI news.</p><p style="margin-top:14px"><a class="btn" href="https://instagram.com/echo.paisa" target="_blank" rel="noopener noreferrer">Follow on Instagram</a></p></div>
+<div style="margin-top:56px"><h2 class="rv">Contact us</h2><p class="sub">Questions, collaborations or feedback? Send us an email.</p></div><div class="card rv"><div class="ico" style="--t:var(--y)">✉</div><h3>Email</h3><p><a href="mailto:contact@tgpcop.site">contact@tgpcop.site</a></p></div>
+</section><footer>Educational only. Not investment advice. Check rates and charges with your bank before you decide.</footer>
+</main>
+<nav class="nav" aria-label="Main navigation"><button data-go="top" class="on"><svg><use href="#i-home"/></svg>Home</button><button data-go="pillars"><svg><use href="#i-book"/></svg>Topics</button><button data-go="tools"><svg><use href="#i-calc"/></svg>Tools</button><button data-go="team"><svg><use href="#i-book"/></svg>Team</button><button data-go="follow"><svg><use href="#i-heart"/></svg>Follow</button></nav>
+</div>
 
-    <nav class="tabs" aria-label="Page sections" role="tablist">
-      <button class="tab active" data-panel="home" role="tab" aria-selected="true">Home</button>
-      <button class="tab" data-panel="products" role="tab" aria-selected="false">Products</button>
-      <button class="tab" data-panel="contact" role="tab" aria-selected="false">Contact us</button>
-    </nav>
-
-    <section class="panel active" data-panel="home">
-      <div class="grid">
-        <article class="card" data-lightbox="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=80">
-          <div class="icon">₹</div>
-          <h3>Money basics</h3>
-          <p>FD, savings and zero-balance accounts explained simply.</p>
-          <span class="chip">Learn</span>
-        </article>
-
-        <article class="card" data-lightbox="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=900&q=80">
-          <div class="icon">💊</div>
-          <h3>Pharma business</h3>
-          <p>Business ideas, startup costs and first steps for pharmacy students.</p>
-          <span class="chip">Coming soon</span>
-        </article>
-
-        <article class="card" data-lightbox="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80">
-          <div class="icon">AI</div>
-          <h3>AI news</h3>
-          <p>How AI is changing pharmacy and finance, in a few lines.</p>
-          <span class="chip">Coming soon</span>
-        </article>
-      </div>
-    </section>
-
-    <section class="panel" data-panel="products">
-      <div class="grid">
-        <a class="card" href="https://www.hdfcbank.com/personal/pay/cards/credit-cards" target="_blank" rel="noopener">
-          <div class="icon">H</div>
-          <h3>HDFC Card</h3>
-          <p>Rewards and cashback for regular spending.</p>
-          <span class="chip">Explore</span>
-        </a>
-
-        <a class="card" href="https://www.onlinesbi.sbi/personal-banking/cards/credit-card" target="_blank" rel="noopener">
-          <div class="icon">S</div>
-          <h3>SBI Card</h3>
-          <p>Strong everyday rewards and travel benefits.</p>
-          <span class="chip">Explore</span>
-        </a>
-
-        <a class="card" href="https://www.kotak.com/en/personal-banking/cards/credit-cards.html" target="_blank" rel="noopener">
-          <div class="icon">K</div>
-          <h3>Kotak Card</h3>
-          <p>Offers, features and card comparisons for credit needs.</p>
-          <span class="chip">New</span>
-        </a>
-
-        <a class="card" href="https://www.axisbank.com/retail/cards/credit-card" target="_blank" rel="noopener">
-          <div class="icon">A</div>
-          <h3>Axis Bank Credit Card</h3>
-          <p>Added to the products list with lifestyle and travel perks.</p>
-          <span class="chip">New</span>
-        </a>
-      </div>
-    </section>
-
-    <section class="panel" data-panel="contact">
-      <div class="contact-box">
-        <h2>Contact us</h2>
-        <p>Need help, want a topic covered, or want to partner with Echo Paisa?</p>
-        <a class="mail" href="mailto:hello@echopaisa.in">hello@echopaisa.in</a>
-      </div>
-    </section>
-
-    <footer class="footer">Educational only. Not investment advice. Check rates and charges with your bank first.</footer>
-  </div>
-
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="close-lightbox" aria-label="Close image" type="button">×</button>
-    <img src="" alt="Product preview" />
-  </div>
-
-  <button class="back-top" id="backTop" type="button">↑ Top</button>
-
-  <script>
-    const tabs = document.querySelectorAll('.tab');
-    const panels = document.querySelectorAll('.panel');
-
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        const target = tab.dataset.panel;
-        tabs.forEach((t) => {
-          const active = t === tab;
-          t.classList.toggle('active', active);
-          t.setAttribute('aria-selected', String(active));
-        });
-        panels.forEach((panel) => {
-          panel.classList.toggle('active', panel.dataset.panel === target);
-        });
-      });
-    });
-
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    const closeLightbox = lightbox.querySelector('.close-lightbox');
-    document.querySelectorAll('[data-lightbox]').forEach((el) => {
-      el.addEventListener('click', () => {
-        lightboxImg.src = el.dataset.lightbox;
-        lightbox.classList.add('open');
-        lightbox.setAttribute('aria-hidden', 'false');
-      });
-    });
-
-    const closeDialog = () => {
-      lightbox.classList.remove('open');
-      lightbox.setAttribute('aria-hidden', 'true');
-      lightboxImg.src = '';
-    };
-
-    closeLightbox.addEventListener('click', closeDialog);
-    lightbox.addEventListener('click', (event) => {
-      if (event.target === lightbox) closeDialog();
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') closeDialog();
-    });
-
-    const backTop = document.getElementById('backTop');
-    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  </script>
+<div id="products-view" hidden>
+<header class="top on"><a class="btn" href="#home" data-view="home" data-nocoin>← Home</a><b>echo paisa</b></header>
+<main style="padding-top:calc(env(safe-area-inset-top,0px) + 84px)"><section id="products"><h2>Products</h2><p class="sub">Bank accounts and credit cards to explore. Review current terms with the provider before applying.</p>
+<div class="tabs" role="tablist" aria-label="Product categories"><button role="tab" id="t-bank" aria-controls="p-bank" aria-selected="true" data-tab="bank">Bank accounts</button><button role="tab" id="t-card" aria-controls="p-card" aria-selected="false" data-tab="card">Credit cards</button></div>
+<div class="panel" id="p-bank" role="tabpanel" aria-labelledby="t-bank"><div class="grid two">
+<article class="card bank"><div class="ico" style="--t:var(--y)">K</div><h3>Kotak 811 Zero Balance Account</h3><p>Explore the Kotak 811 savings account and check the bank’s current account terms and eligibility.</p><ul class="ticks"><li>Zero-balance account option</li><li>View current benefits and charges with Kotak</li><li>Account terms may vary by eligibility</li></ul><a class="btn credit-link" href="https://leads.banksathi.com/?h=ZW54Q2VZV0FZMTNKdTRNS2t4VVhJUT09" target="_blank" rel="noopener sponsored">Explore Kotak 811</a></article>
+<article class="card bank"><div class="ico" style="--t:var(--b);color:#fff">E</div><h3>Equitas Savings Account</h3><p>Explore the Equitas savings account and confirm current rates, rewards and terms in the bank’s app.</p><ul class="ticks"><li>Check current interest rate</li><li>Review maintenance charges</li><li>See debit card rewards and conditions</li></ul><a class="btn credit-link" href="https://leads.banksathi.com/?h=cVBkRGJORVY1aVp1bnpGK0swbE1JUT09" target="_blank" rel="noopener sponsored">Explore Equitas</a></article>
+</div><small class="disclosure">Rates, cashback and offers are set by the banks and can change. T&amp;C apply. These are partner links.</small></div>
+<div class="panel" id="p-card" role="tabpanel" aria-labelledby="t-card" hidden><div class="grid two">
+<article class="card"><div class="ico" style="--t:var(--y)">K</div><h3>Kotak credit cards</h3><p>Visit Kotak’s official credit card page for available cards, benefits, fees and eligibility.</p><a class="btn credit-link" href="https://www.kotak.com/en/personal-banking/cards/credit-cards.html" target="_blank" rel="noopener noreferrer">Explore Kotak cards</a></article>
+<article class="card"><div class="ico" style="--t:#fff">H</div><h3>HDFC credit cards</h3><p>Compare card features and current terms directly with HDFC Bank.</p><a class="btn credit-link" href="https://www.hdfcbank.com/personal/pay/cards/credit-cards" target="_blank" rel="noopener noreferrer">Explore HDFC cards</a></article>
+<article class="card"><div class="ico" style="--t:var(--b);color:#fff">S</div><h3>SBI credit cards</h3><p>Review available cards, fees and benefits on the official SBI Card site.</p><a class="btn credit-link" href="https://www.sbicard.com/en/personal/credit-cards.page" target="_blank" rel="noopener noreferrer">Explore SBI cards</a></article>
+<article class="card"><div class="ico" style="--t:var(--bg)">A</div><h3>Axis Bank credit cards</h3><p>See current card options and eligibility on Axis Bank’s official site.</p><a class="btn credit-link" href="https://www.axisbank.com/retail/cards/credit-card" target="_blank" rel="noopener noreferrer">Explore Axis cards</a></article>
+</div><small class="disclosure">Card availability, rates, fees, offers and eligibility are determined by the issuer. Echo Paisa does not provide financial advice.</small></div>
+</section><footer>Educational only. Not investment advice. Review the provider’s terms before applying.</footer></main>
+</div>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Story preview"><button class="btn" type="button" id="close-lightbox">Close</button><div class="card"><div class="ico" style="--t:var(--y)">₹</div><h3>Money talk made simple.</h3><p>Explore clear explainers about savings, fixed deposits and more.</p></div></div>
+<script>
+(function(){
+var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var logo=document.getElementById('logo');['echo','paisa'].forEach(function(word,rowIndex){var row=document.createElement('div');row.className='row'+(rowIndex?' r2':'');word.split('').forEach(function(char,index){var letter=document.createElement('span');letter.className='letter';letter.textContent=char;letter.style.animation='drop .8s cubic-bezier(.3,1.6,.5,1) both';letter.style.animationDelay=(rowIndex*5+index)*.06+'s';row.appendChild(letter)});logo.appendChild(row)});
+var tag=document.getElementById('tag'),topbar=document.getElementById('topbar'),homeView=document.getElementById('home-view'),productsView=document.getElementById('products-view');
+function onScroll(){if(homeView.hidden)return;var progress=Math.min(1,window.scrollY/Math.max(1,window.innerHeight*.7));topbar.classList.toggle('on',progress>.9);tag.classList.toggle('on',progress>.35&&progress<.9)}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('in');observer.unobserve(entry.target)}})},{threshold:.12});document.querySelectorAll('.rv').forEach(function(el){observer.observe(el)});
+var navButtons=[].slice.call(document.querySelectorAll('.nav button'));navButtons.forEach(function(button){button.addEventListener('click',function(){navButtons.forEach(function(item){item.classList.toggle('on',item===button)});var id=button.dataset.go;if(id==='top')window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});else document.getElementById(id).scrollIntoView({behavior:reduced?'auto':'smooth'})})});
+var sectionObserver=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting)navButtons.forEach(function(button){button.classList.toggle('on',button.dataset.go===entry.target.id)})})},{rootMargin:'-45% 0px -45% 0px'});['top','pillars','tools','team','follow'].forEach(function(id){var target=document.getElementById(id);if(target)sectionObserver.observe(target)});
+document.querySelectorAll('.fq button').forEach(function(button){button.addEventListener('click',function(){var faq=button.parentNode,opening=!faq.classList.contains('open');document.querySelectorAll('.fq.open').forEach(function(item){item.classList.remove('open');item.querySelector('button').setAttribute('aria-expanded','false')});if(opening){faq.classList.add('open');button.setAttribute('aria-expanded','true')}})});
+var amount=document.getElementById('A'),rate=document.getElementById('R'),years=document.getElementById('Y');function currency(value){return '₹'+Math.round(value).toLocaleString('en-IN')}function calculate(){var principal=Number(amount.value),interest=Number(rate.value),duration=Number(years.value),maturity=principal*Math.pow(1+interest/400,4*duration);document.getElementById('vA').textContent=currency(principal);document.getElementById('vR').textContent=interest.toFixed(1)+'%';document.getElementById('vY').textContent=duration+(duration===1?' year':' years');document.getElementById('out').textContent=currency(maturity);document.getElementById('gain').textContent='Estimated interest: '+currency(maturity-principal)}[amount,rate,years].forEach(function(input){input.addEventListener('input',calculate)});calculate();
+var lightbox=document.getElementById('lb');document.getElementById('story-open').addEventListener('click',function(){lightbox.classList.add('on');document.getElementById('close-lightbox').focus()});function closeLightbox(){lightbox.classList.remove('on')}document.getElementById('close-lightbox').addEventListener('click',closeLightbox);lightbox.addEventListener('click',function(event){if(event.target===lightbox)closeLightbox()});document.addEventListener('keydown',function(event){if(event.key==='Escape')closeLightbox()});
+var tabs=[].slice.call(document.querySelectorAll('[data-tab]'));tabs.forEach(function(tab){tab.addEventListener('click',function(){tabs.forEach(function(item){item.setAttribute('aria-selected',String(item===tab))});['bank','card'].forEach(function(name){document.getElementById('p-'+name).hidden=name!==tab.dataset.tab})})});
+function showProducts(show){homeView.hidden=show;productsView.hidden=!show;document.body.classList.toggle('pv',show);document.title=show?'Products | Echo Paisa':'Echo Paisa';if(!show){window.scrollTo(0,0);onScroll()}}
+function route(){showProducts(location.hash==='#products')}function navigate(show){showProducts(show);var next=show?'#products':'#home';if(location.hash!==next)history.pushState(null,'',next)}document.querySelectorAll('[data-view]').forEach(function(link){link.addEventListener('click',function(event){event.preventDefault();navigate(link.dataset.view==='products')})});window.addEventListener('hashchange',route);window.addEventListener('popstate',route);route();
+})();
+</script>
 </body>
 </html>
