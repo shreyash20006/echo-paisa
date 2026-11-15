@@ -187,6 +187,39 @@ button.nc{cursor:pointer}button.nc:active{transform:translate(4px,4px);box-shado
   .f-item.badge{font-size:13px;padding:6px 12px;border-width:2.5px}
 }
 
+
+@keyframes fbob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-11px) rotate(3deg)}}
+.logo{position:relative;z-index:1}
+.tag,.hint{z-index:1}
+.rl{position:relative;flex:none;width:min(calc(100% - 36px),440px);height:clamp(220px,34svh,330px);container-type:size;margin-top:18px;z-index:2;opacity:calc(1 - var(--p,0)*1.5);transform:translate(calc(var(--p,0)*90px),calc(var(--p,0)*-70px)) rotate(calc(var(--p,0)*8deg)) scale(calc(1 - var(--p,0)*.25));animation:cpop .8s cubic-bezier(.3,1.4,.5,1) .7s backwards;border:4px solid #000;border-radius:28px;box-shadow:9px 9px 0 #000;overflow:hidden;background:var(--y);touch-action:pan-y;-webkit-user-select:none;user-select:none}
+@media (hover:hover) and (pointer:fine){.rl{cursor:none}}
+.rs{position:absolute;inset:0;opacity:0;transform:translateX(7%) scale(1.05);transition:opacity .45s,transform .7s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.rs.on{opacity:1;transform:none}
+.rw{position:absolute;left:22px;top:20px;font:400 clamp(40px,11vw,68px)/.9 'Archivo Black','Arial Black',sans-serif;color:#fff;-webkit-text-stroke:5px #000;paint-order:stroke fill;text-shadow:4px 4px 0 #000}
+.rs.k .rw{color:var(--y);-webkit-text-stroke:0;text-shadow:none}
+.rt{position:absolute;left:18px;bottom:46px;background:#fff;border:3px solid #000;border-radius:99px;box-shadow:4px 4px 0 #000;padding:6px 14px;font:700 13px Poppins,sans-serif}
+.rp{position:absolute;width:min(calc(var(--w)*1%),calc(var(--w)*5px));transform:translate(calc(var(--mx,0)*var(--k)*1px),calc(var(--my,0)*var(--k)*1px));transition:transform .25s ease-out}
+.rp>svg,.rp>.cn{display:block;width:100%;aspect-ratio:1;animation:fbob var(--d,6s) ease-in-out infinite}
+.cn{display:grid;place-items:center;border:4px solid #000;border-radius:50%;background:var(--t,#fff);box-shadow:5px 5px 0 #000;position:relative;overflow:hidden}
+.cn.sq{border-radius:22%}
+.cn svg{width:62%;height:62%}
+.cn.sq::after{content:"";position:absolute;left:8%;right:8%;height:5px;background:var(--y);border:2px solid #000;border-radius:9px;animation:scan 2.2s ease-in-out infinite alternate}
+@keyframes scan{from{top:10%}to{top:84%}}
+.rd{position:absolute;left:0;right:0;bottom:18px;display:flex;gap:8px;justify-content:center;z-index:4}
+.rd button{position:relative;width:12px;height:12px;padding:0;border:3px solid #000;border-radius:99px;background:#fff;cursor:pointer;transition:width .3s,background .3s}
+.rd button::before{content:"";position:absolute;inset:-12px -4px}
+.rd button[aria-current=true]{width:36px;background:var(--y)}
+.rcur{position:absolute;left:0;top:0;width:104px;height:104px;margin:-52px 0 0 -52px;pointer-events:none;z-index:5;transform:translate(-300px,-300px)}
+.rcur i{display:block;width:100%;height:100%;border:4px solid #000;border-radius:50%;background:var(--y);box-shadow:4px 4px 0 #000;transform:scale(0);transition:transform .25s cubic-bezier(.3,1.7,.5,1)}
+.rl.h .rcur i{transform:scale(1)}
+.rcur svg{position:absolute;inset:0;width:100%;height:100%}
+.sp{transform-origin:50px 50px;animation:rspin 9s linear infinite}
+@keyframes rspin{to{transform:rotate(360deg)}}
+.rw{left:18px;top:16px;font-size:calc(14cqmin)}
+.rp{width:calc(var(--w)*1cqmin)}
+@keyframes cpop{from{opacity:0;transform:translateY(40px) scale(.9)}}
+@media (max-width:899px){.hero{justify-content:flex-start;padding-top:calc(env(safe-area-inset-top,0px) + 66px)}}
+@media (min-width:900px){.hero{flex-direction:row;gap:clamp(36px,5vw,90px);padding:0 4vw}.rl{margin-top:0;width:min(38vw,460px);height:min(62svh,500px)}}
 </style>
 </head>
 <body>
@@ -203,6 +236,12 @@ button.nc{cursor:pointer}button.nc:active{transform:translate(4px,4px);box-shado
 <symbol id="i-card" viewBox="0 0 48 48"><g stroke="#000" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"><rect x="4" y="9" width="40" height="30" rx="6" style="fill:var(--a)"/><path d="M4.500 18h39v7h-39z" style="fill:var(--b)"/><path d="M11 32h10" fill="none"/></g></symbol>
 <symbol id="i-tick" viewBox="0 0 48 48"><g stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="19" style="fill:var(--a)"/><path d="M15 25l7 7 12-15" fill="none"/></g></symbol>
 <symbol id="i-news" viewBox="0 0 48 48"><g stroke="#000" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"><rect x="6" y="8" width="36" height="32" rx="6" style="fill:var(--a)"/><path d="M14 18h20M14 25h20M14 32h10" fill="none"/></g></symbol>
+
+<symbol id="i-clock" viewBox="0 0 48 48"><g stroke="#000" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"><circle cx="11" cy="11" r="6" style="fill:var(--b)"/><circle cx="37" cy="11" r="6" style="fill:var(--b)"/><path d="M13 40l-4 5M35 40l4 5" fill="none"/><circle cx="24" cy="26" r="16.500" style="fill:var(--a)"/><path d="M24 16v10l7 4" fill="none"/></g></symbol>
+<symbol id="i-rupee" viewBox="0 0 48 48"><path d="M14 12h20M14 20h20M16 12c13 0 13 15 0 15h-2l15 12" fill="none" stroke="#000" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-pct" viewBox="0 0 48 48"><g fill="none" stroke="#000" stroke-width="4.4" stroke-linecap="round"><path d="M36 10L12 38"/><circle cx="13" cy="14" r="5.500"/><circle cx="35" cy="34" r="5.500"/></g></symbol>
+<symbol id="i-bars" viewBox="0 0 48 48"><g stroke="#000" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"><rect x="5" y="28" width="9.500" height="14" rx="2" style="fill:var(--a)"/><rect x="19" y="19" width="9.500" height="23" rx="2" style="fill:var(--a)"/><rect x="33" y="8" width="9.500" height="34" rx="2" style="fill:var(--b)"/></g></symbol>
+<symbol id="i-qr" viewBox="0 0 48 48"><g stroke="#000" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"><rect x="5" y="5" width="15" height="15" rx="3.500" style="fill:var(--a)"/><rect x="28" y="5" width="15" height="15" rx="3.500" style="fill:var(--a)"/><rect x="5" y="28" width="15" height="15" rx="3.500" style="fill:var(--a)"/><path d="M10.500 10.500h4v4h-4zM33.500 10.500h4v4h-4zM10.500 33.500h4v4h-4z" fill="#000"/><path d="M28 28h6v6h-6zM42 28v6M28 42h6M40 40h3v3h-3z" fill="none"/></g></symbol>
 </defs></svg>
 
 <div id="view-home">
@@ -220,6 +259,14 @@ button.nc{cursor:pointer}button.nc:active{transform:translate(4px,4px);box-shado
     <div class="f-item pill" style="top:8%;left:44%;--ibg:var(--b);--ic:#fff;--dur:5.5s;--tx:10px;--ty:15px;--r0:-4deg;--rd:6deg;--prx:-15;--pry:55">⚡ UPI RuPay</div>
   </div>
   <div class="logo" id="logo" aria-label="echo paisa"></div>
+  <div class="rl" id="rl" role="group" aria-label="Echo Paisa topics: FD, Savings, UPI and Cards">
+      <div class="rs on" style="background:var(--y)"><div class="rw">FD</div><div class="rp" style="left:46%;top:24%;--w:46;--k:26;--d:6s"><svg style="--a:#fff;--b:var(--b)"><use href="#i-clock"/></svg></div><div class="rp" style="left:12%;top:52%;--w:24;--k:-18;--d:5s"><span class="cn" style="--t:#fff"><svg><use href="#i-rupee"/></svg></span></div><div class="rp" style="left:70%;top:64%;--w:20;--k:36;--d:7s"><span class="cn" style="--t:var(--b)"><svg><use href="#i-pct"/></svg></span></div><div class="rt">Grow slow, grow safe</div></div>
+      <div class="rs" style="background:var(--b)"><div class="rw">Savings</div><div class="rp" style="left:40%;top:22%;--w:50;--k:24;--d:6s"><svg style="--a:var(--bg);--b:var(--y)"><use href="#i-bank"/></svg></div><div class="rp" style="left:8%;top:54%;--w:28;--k:-22;--d:5s"><svg style="--a:#fff;--b:var(--y)"><use href="#i-bars"/></svg></div><div class="rp" style="left:66%;top:66%;--w:22;--k:38;--d:7s"><span class="cn" style="--t:var(--y)"><svg><use href="#i-rupee"/></svg></span></div><div class="rt">Pick the right account</div></div>
+      <div class="rs" style="background:var(--bg2)"><div class="rw">UPI</div><div class="rp" style="left:42%;top:24%;--w:46;--k:26;--d:6s"><span class="cn sq"><svg style="--a:var(--b)"><use href="#i-qr"/></svg></span></div><div class="rp" style="left:8%;top:56%;--w:32;--k:-20;--d:5s"><svg style="--a:#fff;--b:var(--y)"><use href="#i-card"/></svg></div><div class="rp" style="left:72%;top:68%;--w:20;--k:36;--d:7s"><span class="cn" style="--t:var(--y)"><svg><use href="#i-rupee"/></svg></span></div><div class="rt">Scan, pay, done</div></div>
+      <div class="rs k" style="background:#111"><div class="rw">Cards</div><div class="rp" style="left:34%;top:26%;--w:56;--k:22;--d:6s"><svg style="--a:#fff;--b:var(--y)"><use href="#i-card"/></svg></div><div class="rp" style="left:8%;top:60%;--w:22;--k:-20;--d:5s"><span class="cn" style="--t:var(--y)"><svg><use href="#i-pct"/></svg></span></div><div class="rp" style="left:66%;top:68%;--w:24;--k:38;--d:7s"><span class="cn" style="--t:var(--y)"><svg><use href="#i-rupee"/></svg></span></div><div class="rt">Rewards, if you pay on time</div></div>
+      <div class="rd"><button type="button" aria-label="Show FD" aria-current="true"></button><button type="button" aria-label="Show Savings"></button><button type="button" aria-label="Show UPI"></button><button type="button" aria-label="Show Cards"></button></div>
+      <div class="rcur" id="rcur" aria-hidden="true"><i><svg viewBox="0 0 100 100"><defs><path id="rc" d="M50 50m-34 0a34 34 0 1 1 68 0a34 34 0 1 1-68 0"/></defs><g class="sp"><text font-family="Archivo Black,Arial Black,sans-serif" font-size="9.500" fill="#000"><textPath href="#rc" textLength="205" lengthAdjust="spacing">MOVE TO SWITCH • MOVE TO SWITCH • </textPath></text></g><path d="M37 50h26M42 44l-6 6 6 6M58 44l6 6-6 6" fill="none" stroke="#000" stroke-width="4.500" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div>
+    </div>
   <div class="tag" id="tag">Money talk made simple.</div>
   <div class="hint">Scroll to break it</div>
 </div></div>
@@ -693,6 +740,10 @@ var V=L.map(function(_,n){return{dx:(((n*73)%11)-5)*52,dy:420+((n*37)%7)*90,rot:
 function prog(el){var r=el.getBoundingClientRect();return Math.max(0,Math.min(1,-r.top/(r.height-innerHeight)))}
 function upd(){if(document.getElementById('view-home').hidden)return;
   var p=prog(hw),r=hw.getBoundingClientRect();
+  var pv=reduce?0:Math.max(0,Math.min(1,(p-.08)/.92));
+  var hr=document.querySelector('.hero'), rlc=document.getElementById('rl');
+  if(hr) hr.style.setProperty('--p',pv.toFixed(3));
+  if(rlc) rlc.style.pointerEvents=pv>.3?'none':'';
   bar.classList.toggle('on',p>.95||r.bottom<0);
   if(reduce){tag.style.opacity=p>.5?1:0;return}
   var q=Math.max(0,(p-.08)/.92),e=q*q,sk=Math.min(1,p/.04)*(p<.08?1:0);
@@ -809,5 +860,25 @@ document.querySelectorAll('a[data-view]').forEach(function(a){a.addEventListener
 addEventListener('hashchange',route);addEventListener('popstate',route);route();
 })();
 </script>
+
+<script>
+(function(){
+var rl=document.getElementById('rl');if(!rl)return;
+var sc=[].slice.call(rl.querySelectorAll('.rs')),ds=[].slice.call(rl.querySelectorAll('.rd button')),cur=document.getElementById('rcur'),
+n=sc.length,i=0,hov=false,tx=0,ty=0,cx=0,cy=0,reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function go(k){k=(k+n)%n;if(k===i)return;sc[i].classList.remove('on');ds[i].setAttribute('aria-current','false');i=k;sc[i].classList.add('on');ds[i].setAttribute('aria-current','true')}
+function loop(){cx+=(tx-cx)*.2;cy+=(ty-cy)*.2;cur.style.transform='translate('+cx+'px,'+cy+'px)';if(hov)requestAnimationFrame(loop)}
+rl.addEventListener('pointermove',function(e){
+  var r=rl.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+  rl.style.setProperty('--mx',((x/r.width-.5)*2).toFixed(3));rl.style.setProperty('--my',((y/r.height-.5)*2).toFixed(3));
+  if(e.pointerType==='mouse'){tx=x;ty=y;if(!hov){hov=true;cx=x;cy=y;rl.classList.add('h');loop()}}
+  go(Math.min(n-1,Math.max(0,Math.floor(x/r.width*n))))});
+rl.addEventListener('pointerleave',function(){hov=false;rl.classList.remove('h');rl.style.setProperty('--mx',0);rl.style.setProperty('--my',0)});
+rl.addEventListener('click',function(e){if(!hov&&!e.target.closest('.rd'))go(i+1)});
+ds.forEach(function(d,k){d.addEventListener('click',function(){go(k)})});
+setInterval(function(){if(!hov&&!reduce&&!document.hidden&&!document.getElementById('view-home').hidden)go(i+1)},3200);
+})();
+</script>
+
 </body>
 </html>
