@@ -171,20 +171,22 @@ button.nc{cursor:pointer}button.nc:active{transform:translate(4px,4px);box-shado
 .dct{display:flex;align-items:center;gap:18px}.dct span{font:400 20px 'Archivo Black','Arial Black',sans-serif;min-width:64px;text-align:center}
 
 /* Floating finance & rupees background elements with motion */
-.hero-bg-floating{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
-.f-item{position:absolute;display:inline-flex;align-items:center;justify-content:center;font-family:'Archivo Black','Arial Black',Impact,sans-serif;font-weight:700;border:3px solid #000;border-radius:99px;box-shadow:4px 4px 0 #000;background:var(--ibg,#fff);color:var(--ic,#000);padding:6px 14px;will-change:transform,opacity;pointer-events:none;user-select:none;animation:f-float var(--dur,6s) ease-in-out infinite alternate}
+/* Floating finance symbols around hero background */
+.hero-bg-floating{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1;display:none}
+@media (min-width:900px){
+  .hero-bg-floating{display:block}
+}
+@media (max-width:899px){
+  .hero-bg-floating{display:none !important}
+}
+.f-item{position:absolute;display:inline-flex;align-items:center;justify-content:center;font-family:'Archivo Black','Arial Black',Impact,sans-serif;font-weight:700;border:3px solid #000;border-radius:99px;box-shadow:4px 4px 0 #000;background:var(--ibg,#fff);color:var(--ic,#000);padding:6px 15px;will-change:transform,opacity;pointer-events:none;user-select:none;animation:f-float var(--dur,6s) ease-in-out infinite alternate}
 .f-item.coin{width:56px;height:56px;padding:0;border-radius:50%;font-size:28px}
 .f-item.pill{font-size:14px;letter-spacing:-.2px}
-.f-item.badge{font-size:16px;border-radius:18px;padding:8px 16px}
+.f-item.badge{font-size:15px;border-radius:18px;padding:7px 15px}
 @keyframes f-float{
   0%{transform:translate3d(0,0,0) rotate(var(--r0,0deg))}
   50%{transform:translate3d(var(--tx,12px),var(--ty,-18px),0) rotate(calc(var(--r0,0deg) + var(--rd,6deg)))}
   100%{transform:translate3d(calc(var(--tx,12px)*-1),calc(var(--ty,-18px)*-1.2),0) rotate(calc(var(--r0,0deg) - var(--rd,6deg)))}
-}
-@media (max-width:600px){
-  .f-item.coin{width:46px;height:46px;font-size:22px;border-width:2.5px;box-shadow:3px 3px 0 #000}
-  .f-item.pill{font-size:12px;padding:4px 10px;border-width:2.5px}
-  .f-item.badge{font-size:13px;padding:6px 12px;border-width:2.5px}
 }
 
 
@@ -195,9 +197,9 @@ button.nc{cursor:pointer}button.nc:active{transform:translate(4px,4px);box-shado
 @media (hover:hover) and (pointer:fine){.rl{cursor:none}}
 .rs{position:absolute;inset:0;opacity:0;transform:translateX(7%) scale(1.05);transition:opacity .45s,transform .7s cubic-bezier(.2,.8,.2,1);pointer-events:none}
 .rs.on{opacity:1;transform:none}
-.rw{position:absolute;left:22px;top:20px;font:400 clamp(40px,11vw,68px)/.9 'Archivo Black','Arial Black',sans-serif;color:#fff;-webkit-text-stroke:5px #000;paint-order:stroke fill;text-shadow:4px 4px 0 #000}
+.rw{position:absolute;left:18px;top:18px;font:400 clamp(34px,9vw,56px)/.9 'Archivo Black','Arial Black',sans-serif;color:#fff;-webkit-text-stroke:4px #000;paint-order:stroke fill;text-shadow:3px 3px 0 #000;z-index:2;pointer-events:none}
 .rs.k .rw{color:var(--y);-webkit-text-stroke:0;text-shadow:none}
-.rt{position:absolute;left:18px;bottom:46px;background:#fff;border:3px solid #000;border-radius:99px;box-shadow:4px 4px 0 #000;padding:6px 14px;font:700 13px Poppins,sans-serif}
+.rt{position:absolute;left:16px;bottom:42px;background:#fff;border:3px solid #000;border-radius:99px;box-shadow:3px 3px 0 #000;padding:5px 12px;font:700 clamp(11px,3.2vw,13px) Poppins,sans-serif;z-index:3;max-width:calc(100% - 32px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
 .rp{position:absolute;width:min(calc(var(--w)*1%),calc(var(--w)*5px));transform:translate(calc(var(--mx,0)*var(--k)*1px),calc(var(--my,0)*var(--k)*1px));transition:transform .25s ease-out}
 .rp>svg,.rp>.cn{display:block;width:100%;aspect-ratio:1;animation:fbob var(--d,6s) ease-in-out infinite}
 .cn{display:grid;place-items:center;border:4px solid #000;border-radius:50%;background:var(--t,#fff);box-shadow:5px 5px 0 #000;position:relative;overflow:hidden}
@@ -276,19 +278,7 @@ button.nc{cursor:pointer}button.nc:active{transform:translate(4px,4px);box-shado
   }
 
   /* Floating symbols in hero background: compact scale */
-  .f-item.coin {
-    width: 38px !important;
-    height: 38px !important;
-    font-size: 18px !important;
-  }
-  .f-item.pill {
-    font-size: 11px !important;
-    padding: 3px 9px !important;
-  }
-  .f-item.badge {
-    font-size: 12px !important;
-    padding: 4px 10px !important;
-  }
+  /* removed floating badges on mobile */
 
   /* Team section flowchart: optimal breathing room on small screens */
   .kids {
@@ -386,21 +376,21 @@ button.nc{cursor:pointer}button.nc:active{transform:translate(4px,4px);box-shado
 
 <div class="hw" id="top"><div class="hero">
   <div class="hero-bg-floating" id="hero-floating">
-    <div class="f-item coin" style="top:12%;left:8%;--ibg:var(--y);--dur:5.2s;--tx:14px;--ty:-22px;--r0:-12deg;--rd:8deg;--prx:-35;--pry:45">₹</div>
-    <div class="f-item pill" style="top:18%;right:10%;--ibg:#fff;--dur:6.4s;--tx:-18px;--ty:16px;--r0:8deg;--rd:-10deg;--prx:40;--pry:50">📈 FD 8.5%</div>
-    <div class="f-item badge" style="top:32%;left:5%;--ibg:var(--b);--ic:#fff;--dur:7.1s;--tx:16px;--ty:20px;--r0:14deg;--rd:6deg;--prx:-45;--pry:35">₹ SIP</div>
-    <div class="f-item coin" style="top:28%;right:6%;--ibg:#fff;--dur:5.8s;--tx:-15px;--ty:-18px;--r0:-8deg;--rd:12deg;--prx:50;--pry:60">%</div>
-    <div class="f-item pill" style="bottom:22%;left:9%;--ibg:#fff;--dur:6.8s;--tx:12px;--ty:-16px;--r0:-6deg;--rd:8deg;--prx:-30;--pry:-40">🏦 Savings 7%</div>
-    <div class="f-item coin" style="bottom:18%;right:12%;--ibg:var(--y);--dur:4.9s;--tx:-14px;--ty:24px;--r0:15deg;--rd:-9deg;--prx:35;--pry:-50">₹</div>
-    <div class="f-item badge" style="bottom:30%;right:4%;--ibg:var(--y);--dur:6.2s;--tx:-20px;--ty:-14px;--r0:-14deg;--rd:7deg;--prx:45;--pry:-35">💳 0-Balance</div>
-    <div class="f-item pill" style="top:8%;left:44%;--ibg:var(--b);--ic:#fff;--dur:5.5s;--tx:10px;--ty:15px;--r0:-4deg;--rd:6deg;--prx:-15;--pry:55">⚡ UPI RuPay</div>
+    <div class="f-item coin" style="top:6%;left:4%;--ibg:var(--y);--dur:5.2s;--tx:14px;--ty:-22px;--r0:-12deg;--rd:8deg;--prx:-35;--pry:45">₹</div>
+    <div class="f-item pill" style="top:7%;right:4%;--ibg:#fff;--dur:6.4s;--tx:-18px;--ty:16px;--r0:8deg;--rd:-10deg;--prx:40;--pry:50">📈 FD 8.5%</div>
+    <div class="f-item badge" style="top:42%;left:3%;--ibg:var(--b);--ic:#fff;--dur:7.1s;--tx:16px;--ty:20px;--r0:14deg;--rd:6deg;--prx:-45;--pry:35">₹ SIP</div>
+    <div class="f-item coin" style="top:38%;right:4%;--ibg:#fff;--dur:5.8s;--tx:-15px;--ty:-18px;--r0:-8deg;--rd:12deg;--prx:50;--pry:60">%</div>
+    <div class="f-item pill" style="bottom:8%;left:4%;--ibg:#fff;--dur:6.8s;--tx:12px;--ty:-16px;--r0:-6deg;--rd:8deg;--prx:-30;--pry:-40">🏦 Savings 7%</div>
+    <div class="f-item coin" style="bottom:8%;right:5%;--ibg:var(--y);--dur:4.9s;--tx:-14px;--ty:24px;--r0:15deg;--rd:-9deg;--prx:35;--pry:-50">₹</div>
+    <div class="f-item badge" style="bottom:26%;right:3%;--ibg:var(--y);--dur:6.2s;--tx:-20px;--ty:-14px;--r0:-14deg;--rd:7deg;--prx:45;--pry:-35">💳 0-Balance</div>
+    <div class="f-item pill" style="bottom:26%;left:3%;--ibg:var(--b);--ic:#fff;--dur:5.5s;--tx:10px;--ty:15px;--r0:-4deg;--rd:6deg;--prx:-15;--pry:55">⚡ UPI RuPay</div>
   </div>
   <div class="logo" id="logo" aria-label="echo paisa"></div>
   <div class="rl" id="rl" role="group" aria-label="Echo Paisa topics: FD, Savings, UPI and Cards">
-      <div class="rs on" style="background:var(--y)"><div class="rw">FD</div><div class="rp" style="left:46%;top:24%;--w:46;--k:26;--d:6s"><svg style="--a:#fff;--b:var(--b)"><use href="#i-clock"/></svg></div><div class="rp" style="left:12%;top:52%;--w:24;--k:-18;--d:5s"><span class="cn" style="--t:#fff"><svg><use href="#i-rupee"/></svg></span></div><div class="rp" style="left:70%;top:64%;--w:20;--k:36;--d:7s"><span class="cn" style="--t:var(--b)"><svg><use href="#i-pct"/></svg></span></div><div class="rt">Grow slow, grow safe</div></div>
-      <div class="rs" style="background:var(--b)"><div class="rw">Savings</div><div class="rp" style="left:40%;top:22%;--w:50;--k:24;--d:6s"><svg style="--a:var(--bg);--b:var(--y)"><use href="#i-bank"/></svg></div><div class="rp" style="left:8%;top:54%;--w:28;--k:-22;--d:5s"><svg style="--a:#fff;--b:var(--y)"><use href="#i-bars"/></svg></div><div class="rp" style="left:66%;top:66%;--w:22;--k:38;--d:7s"><span class="cn" style="--t:var(--y)"><svg><use href="#i-rupee"/></svg></span></div><div class="rt">Pick the right account</div></div>
-      <div class="rs" style="background:var(--bg2)"><div class="rw">UPI</div><div class="rp" style="left:42%;top:24%;--w:46;--k:26;--d:6s"><span class="cn sq"><svg style="--a:var(--b)"><use href="#i-qr"/></svg></span></div><div class="rp" style="left:8%;top:56%;--w:32;--k:-20;--d:5s"><svg style="--a:#fff;--b:var(--y)"><use href="#i-card"/></svg></div><div class="rp" style="left:72%;top:68%;--w:20;--k:36;--d:7s"><span class="cn" style="--t:var(--y)"><svg><use href="#i-rupee"/></svg></span></div><div class="rt">Scan, pay, done</div></div>
-      <div class="rs k" style="background:#111"><div class="rw">Cards</div><div class="rp" style="left:34%;top:26%;--w:56;--k:22;--d:6s"><svg style="--a:#fff;--b:var(--y)"><use href="#i-card"/></svg></div><div class="rp" style="left:8%;top:60%;--w:22;--k:-20;--d:5s"><span class="cn" style="--t:var(--y)"><svg><use href="#i-pct"/></svg></span></div><div class="rp" style="left:66%;top:68%;--w:24;--k:38;--d:7s"><span class="cn" style="--t:var(--y)"><svg><use href="#i-rupee"/></svg></span></div><div class="rt">Rewards, if you pay on time</div></div>
+      <div class="rs on" style="background:var(--y)"><div class="rw">FD</div><div class="rp" style="right:12%;top:18%;--w:42;--k:26;--d:6s"><svg style="--a:#fff;--b:var(--b)"><use href="#i-clock"/></svg></div><div class="rp" style="right:38%;top:48%;--w:22;--k:-18;--d:5s"><span class="cn" style="--t:#fff"><svg><use href="#i-rupee"/></svg></span></div><div class="rp" style="right:14%;top:54%;--w:20;--k:36;--d:7s"><span class="cn" style="--t:var(--b)"><svg><use href="#i-pct"/></svg></span></div><div class="rt">Grow slow, grow safe</div></div>
+      <div class="rs" style="background:var(--b)"><div class="rw">Savings</div><div class="rp" style="right:12%;top:18%;--w:44;--k:24;--d:6s"><svg style="--a:var(--bg);--b:var(--y)"><use href="#i-bank"/></svg></div><div class="rp" style="right:40%;top:48%;--w:24;--k:-22;--d:5s"><svg style="--a:#fff;--b:var(--y)"><use href="#i-bars"/></svg></div><div class="rp" style="right:14%;top:54%;--w:20;--k:38;--d:7s"><span class="cn" style="--t:var(--y)"><svg><use href="#i-rupee"/></svg></span></div><div class="rt">Pick the right account</div></div>
+      <div class="rs" style="background:var(--bg2)"><div class="rw">UPI</div><div class="rp" style="right:12%;top:18%;--w:42;--k:26;--d:6s"><span class="cn sq"><svg style="--a:var(--b)"><use href="#i-qr"/></svg></span></div><div class="rp" style="right:40%;top:46%;--w:26;--k:-20;--d:5s"><svg style="--a:#fff;--b:var(--y)"><use href="#i-card"/></svg></div><div class="rp" style="right:14%;top:54%;--w:20;--k:36;--d:7s"><span class="cn" style="--t:var(--y)"><svg><use href="#i-rupee"/></svg></span></div><div class="rt">Scan, pay, done</div></div>
+      <div class="rs k" style="background:#111"><div class="rw">Cards</div><div class="rp" style="right:10%;top:20%;--w:48;--k:22;--d:6s"><svg style="--a:#fff;--b:var(--y)"><use href="#i-card"/></svg></div><div class="rp" style="right:42%;top:50%;--w:20;--k:-20;--d:5s"><span class="cn" style="--t:var(--y)"><svg><use href="#i-pct"/></svg></span></div><div class="rp" style="right:14%;top:54%;--w:22;--k:38;--d:7s"><span class="cn" style="--t:var(--y)"><svg><use href="#i-rupee"/></svg></span></div><div class="rt">Rewards, if you pay on time</div></div>
       <div class="rd"><button type="button" aria-label="Show FD" aria-current="true"></button><button type="button" aria-label="Show Savings"></button><button type="button" aria-label="Show UPI"></button><button type="button" aria-label="Show Cards"></button></div>
       <div class="rcur" id="rcur" aria-hidden="true"><i><svg viewBox="0 0 100 100"><defs><path id="rc" d="M50 50m-34 0a34 34 0 1 1 68 0a34 34 0 1 1-68 0"/></defs><g class="sp"><text font-family="Archivo Black,Arial Black,sans-serif" font-size="9.500" fill="#000"><textPath href="#rc" textLength="205" lengthAdjust="spacing">MOVE TO SWITCH • MOVE TO SWITCH • </textPath></text></g><path d="M37 50h26M42 44l-6 6 6 6M58 44l6 6-6 6" fill="none" stroke="#000" stroke-width="4.500" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div>
     </div>
