@@ -220,6 +220,143 @@ button.nc{cursor:pointer}button.nc:active{transform:translate(4px,4px);box-shado
 @keyframes cpop{from{opacity:0;transform:translateY(40px) scale(.9)}}
 @media (max-width:899px){.hero{justify-content:flex-start;padding-top:calc(env(safe-area-inset-top,0px) + 66px)}}
 @media (min-width:900px){.hero{flex-direction:row;gap:clamp(36px,5vw,90px);padding:0 4vw}.rl{margin-top:0;width:min(38vw,460px);height:min(62svh,500px)}}
+
+/* Mobile view polish & touch enhancements */
+@media (max-width: 600px) {
+  /* Hero spacing: tighten vertical height for compact mobile screens */
+  .hero {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 54px) !important;
+    justify-content: center !important;
+  }
+  .logo {
+    font-size: min(23vw, 110px) !important;
+    padding: 0 4px 12px 0 !important;
+  }
+  .row.r2 {
+    margin-left: 9vw !important;
+  }
+  .rl {
+    width: calc(100% - 28px) !important;
+    height: clamp(210px, 29svh, 270px) !important;
+    margin-top: 12px !important;
+    border-radius: 24px !important;
+    box-shadow: 6px 6px 0 #000 !important;
+    border-width: 3.5px !important;
+  }
+  .rw {
+    left: 16px !important;
+    top: 14px !important;
+    font-size: clamp(34px, 9.5vw, 48px) !important;
+    -webkit-text-stroke: 4px #000 !important;
+    text-shadow: 3px 3px 0 #000 !important;
+  }
+  .rt {
+    left: 14px !important;
+    bottom: 38px !important;
+    padding: 4px 12px !important;
+    font-size: 11.5px !important;
+    border-width: 2.5px !important;
+    box-shadow: 3px 3px 0 #000 !important;
+  }
+  .rd {
+    bottom: 12px !important;
+    gap: 6px !important;
+  }
+  .rd button {
+    width: 10px !important;
+    height: 10px !important;
+    border-width: 2.5px !important;
+  }
+  .rd button[aria-current=true] {
+    width: 28px !important;
+  }
+  .hint {
+    bottom: calc(100px + env(safe-area-inset-bottom, 0px)) !important;
+    font-size: 13.5px !important;
+  }
+
+  /* Floating symbols in hero background: compact scale */
+  .f-item.coin {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 18px !important;
+  }
+  .f-item.pill {
+    font-size: 11px !important;
+    padding: 3px 9px !important;
+  }
+  .f-item.badge {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+  }
+
+  /* Team section flowchart: optimal breathing room on small screens */
+  .kids {
+    gap: 8px !important;
+    padding-top: 32px !important;
+  }
+  .kids::before {
+    left: calc((100% - 16px)/6) !important;
+    right: calc((100% - 16px)/6) !important;
+  }
+  .nd {
+    padding: 6px 5px 8px !important;
+    border-width: 3px !important;
+    border-radius: 18px !important;
+    box-shadow: 4px 4px 0 #000 !important;
+  }
+  .nd b {
+    font-size: 11.5px !important;
+    margin-top: 6px !important;
+    line-height: 1.15 !important;
+  }
+  .nd .chip {
+    margin-top: 6px !important;
+    font-size: 10px !important;
+    padding: 2px 6px !important;
+  }
+  .tile.ep {
+    font-size: 19px !important;
+    -webkit-text-stroke: 3.5px #000 !important;
+    text-shadow: 2px 2px 0 #000 !important;
+  }
+
+  /* Bottom floating nav bar: high touch-target refinement */
+  .nav {
+    padding: 6px 10px !important;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 8px) !important;
+    gap: 2px !important;
+    border-radius: 99px !important;
+    box-shadow: 5px 5px 0 #000 !important;
+  }
+  .nav button {
+    padding: 7px 9px 5px !important;
+    font-size: 10.5px !important;
+  }
+  .nav button svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  /* Rail & News Card carousel: smooth peek preview */
+  .st {
+    flex: 0 0 min(66vw, 240px) !important;
+    border-radius: 22px !important;
+    box-shadow: 6px 6px 0 #000 !important;
+  }
+  .nc {
+    flex: 0 0 min(64vw, 225px) !important;
+    border-radius: 20px !important;
+    box-shadow: 5px 5px 0 #000 !important;
+  }
+
+  /* Heading responsiveness */
+  h2 {
+    font-size: clamp(30px, 9.5vw, 42px) !important;
+    -webkit-text-stroke: 7px #000 !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -874,8 +1011,38 @@ rl.addEventListener('pointermove',function(e){
   if(e.pointerType==='mouse'){tx=x;ty=y;if(!hov){hov=true;cx=x;cy=y;rl.classList.add('h');loop()}}
   go(Math.min(n-1,Math.max(0,Math.floor(x/r.width*n))))});
 rl.addEventListener('pointerleave',function(){hov=false;rl.classList.remove('h');rl.style.setProperty('--mx',0);rl.style.setProperty('--my',0)});
-rl.addEventListener('click',function(e){if(!hov&&!e.target.closest('.rd'))go(i+1)});
-ds.forEach(function(d,k){d.addEventListener('click',function(){go(k)})});
+rl.addEventListener('click',function(e){if(!hov&&!e.target.closest('.rd')&&!swiped)go(i+1)});
+ds.forEach(function(d,k){d.addEventListener('click',function(e){e.stopPropagation();go(k)})});
+
+// Touch swipe left/right for mobile on .rl card
+var rTouchX=0, rTouchY=0, swiped=false;
+rl.addEventListener('touchstart', function(e){
+  if(e.touches.length === 1) {
+    rTouchX = e.touches[0].clientX;
+    rTouchY = e.touches[0].clientY;
+    swiped = false;
+  }
+}, {passive: true});
+
+rl.addEventListener('touchmove', function(e){
+  if(e.touches.length === 1 && rTouchX !== null) {
+    var dx = e.touches[0].clientX - rTouchX;
+    var dy = e.touches[0].clientY - rTouchY;
+    if(Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 35) {
+      swiped = true;
+      if(dx < 0) go(i+1);
+      else go(i-1);
+      rTouchX = null;
+      if(navigator.vibrate) navigator.vibrate(8);
+    }
+  }
+}, {passive: true});
+
+rl.addEventListener('touchend', function(){
+  rTouchX = null;
+  setTimeout(function(){ swiped = false; }, 80);
+}, {passive: true});
+
 setInterval(function(){if(!hov&&!reduce&&!document.hidden&&!document.getElementById('view-home').hidden)go(i+1)},3200);
 })();
 </script>
